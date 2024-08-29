@@ -1,0 +1,35 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 77px 24px 50px;
+  background: #fff;
+}
+
+.field {
+  margin-top: 40px;
+  border-width: 0;
+  border-bottom-width: 2px;
+  border-color: lightgray;
+}
+.error {
+  color: red;
+  font-size: small;
+}
+.submit-button {
+  margin-top: 50px;
+  border-radius: 20px;
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: medium;
+  font-weight: 600;
+  border-width: 0;
+  color: #fff;
+  background: linear-gradient(0.25turn, #45cbfd, #b228ff);
+}
