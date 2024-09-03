@@ -6,17 +6,25 @@ import Profile from './components/Profile';
 import SignupForm from './components/SignupForm';
 
 function App() {
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<LoginForm />} />
+
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
-          <Route path='/users' element={<Dashboard />} />
-          <Route path='/profile/:userId' element={<Profile />} />
+          {isLoggedIn ? (
+            <>
+              <Route path='/' element={<Dashboard />} />
+              <Route path='/users' element={<Dashboard />} />
+              <Route path='/profile/:userId' element={<Profile />} />
+            </>
+          ) : (
+            <Route path="*" element={<LoginForm />} />
+          )}
         </Routes>
-
       </BrowserRouter>
     </div>
   );

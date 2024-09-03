@@ -2,6 +2,7 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './SignupForm.module.css';
+import { notification } from 'antd';
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -9,10 +10,16 @@ function SignupForm() {
   const handleSubmit = (values, { setSubmitting, setStatus }) => {
     // Here you would typically make an API call to register the user
     // For this example, we'll just store the user in localStorage
-    localStorage.setItem('user', JSON.stringify(values));
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    storedUsers.push(values);
+    localStorage.setItem('users', JSON.stringify(storedUsers));
     setStatus({ success: 'Registration successful! You can now log in.' });
     setSubmitting(false);
-    setTimeout(() => navigate('/login'), 2000); // Redirect to login page after 2 seconds
+    notification["success"]({
+      message: 'Registration Successful',
+      description: `Redirecting to login page...`,
+    });
+    setTimeout(() => navigate('/login'), 2000);
   };
 
   const validateForm = (values) => {
@@ -58,8 +65,6 @@ function SignupForm() {
           <button type="submit" disabled={isSubmitting} className={styles['submit-button']}>
             {isSubmitting ? 'Signing up...' : 'Sign Up'}
           </button>
-
-          {status && status.success && <p className={styles.success}>{status.success}</p>}
 
           <p className={styles.link}>
             Already have an account? <Link to="/login" className={styles.error}>Log in</Link>

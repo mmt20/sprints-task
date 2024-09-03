@@ -2,19 +2,34 @@ import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './LoginForm.module.css';
+import { notification } from 'antd';
 
 function LoginForm() {
   const navigate = useNavigate();
-
   const handleSubmit = (values, { setSubmitting, setStatus }) => {
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser && storedUser.email === values.email && storedUser.password === values.password) {
-      localStorage.setItem('loggedInUser', JSON.stringify(storedUser));
+    const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
+    const authenticatedUser = storedUsers.find(
+      user => user.email === values.email && user.password === values.password
+    );
+
+    if (authenticatedUser) {
+      localStorage.setItem('loggedInUser', JSON.stringify(authenticatedUser));
+      localStorage.setItem('isLoggedIn', 'true');
+      setSubmitting(false);
+      notification["success"]({
+        message: 'Login Successful',
+        description: 'Welcome ',
+      });
       navigate('/users');
+
     } else {
       setStatus({ error: 'Invalid email or password' });
+      notification["error"]({
+        message: 'Login Failed',
+        description: 'Invalid email or password. Please try again.',
+      });
+      setSubmitting(false);
     }
-    setSubmitting(false);
   };
 
   const validateForm = (values) => {
