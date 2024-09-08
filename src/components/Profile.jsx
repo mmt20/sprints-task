@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import { EnvelopeIcon, PhoneIcon, BriefcaseIcon, CakeIcon, UserIcon, BarsArrowUpIcon, CircleStackIcon, IdentificationIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline';
-
+import {
+  EnvelopeIcon,
+  PhoneIcon,
+  BriefcaseIcon,
+  CakeIcon,
+  UserIcon,
+  BarsArrowUpIcon,
+  CircleStackIcon,
+  IdentificationIcon,
+  BuildingOfficeIcon,
+} from '@heroicons/react/24/outline';
 
 function Profile() {
   const { userId } = useParams();
@@ -23,7 +32,7 @@ function Profile() {
   }
 
   return (
-    <div className='flex flex-row w-full'>
+    <div className="flex flex-row w-full">
       <Sidebar />
       <div className="w-full   md:w-3/4 min-h-screen">
         <main className=" flex-1  ">
@@ -52,10 +61,26 @@ function Profile() {
                   Personal Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InfoItem icon={<UserIcon className="h-5 w-5 text-gray-400" />} label="Gender" value={user.gender} />
-                  <InfoItem icon={<CakeIcon className="h-5 w-5 text-gray-400" />} label="Birth Date" value={user.birthDate} />
-                  <InfoItem icon={<BarsArrowUpIcon className="h-5 w-5 text-gray-400" />} label="Height" value={`${user.height} cm`} />
-                  <InfoItem icon={<CircleStackIcon className="h-5 w-5 text-gray-400" />} label="Weight" value={`${user.weight} kg`} />
+                  <InfoItem
+                    icon={<UserIcon className="h-5 w-5 text-gray-400" />}
+                    label="Gender"
+                    value={user.gender}
+                  />
+                  <InfoItem
+                    icon={<CakeIcon className="h-5 w-5 text-gray-400" />}
+                    label="Birth Date"
+                    value={user.birthDate}
+                  />
+                  <InfoItem
+                    icon={<BarsArrowUpIcon className="h-5 w-5 text-gray-400" />}
+                    label="Height"
+                    value={`${user.height} cm`}
+                  />
+                  <InfoItem
+                    icon={<CircleStackIcon className="h-5 w-5 text-gray-400" />}
+                    label="Weight"
+                    value={`${user.weight} kg`}
+                  />
                 </div>
               </section>
 
@@ -65,8 +90,14 @@ function Profile() {
                   Contact Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InfoItem icon={<EnvelopeIcon className="h-5 w-5 text-gray-400" />} value={user.email} />
-                  <InfoItem icon={<PhoneIcon className="h-5 w-5 text-gray-400" />} value={user.phone} />
+                  <InfoItem
+                    icon={<EnvelopeIcon className="h-5 w-5 text-gray-400" />}
+                    value={user.email}
+                  />
+                  <InfoItem
+                    icon={<PhoneIcon className="h-5 w-5 text-gray-400" />}
+                    value={user.phone}
+                  />
                 </div>
               </section>
 
@@ -76,8 +107,18 @@ function Profile() {
                   Work Information
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <InfoItem icon={<BriefcaseIcon className="h-5 w-5 text-gray-400" />} label="Company" value={user.company.name} />
-                  <InfoItem icon={<BuildingOfficeIcon className="h-5 w-5 text-gray-400" />} label="Department" value={user.company.department} />
+                  <InfoItem
+                    icon={<BriefcaseIcon className="h-5 w-5 text-gray-400" />}
+                    label="Company"
+                    value={user.company.name}
+                  />
+                  <InfoItem
+                    icon={
+                      <BuildingOfficeIcon className="h-5 w-5 text-gray-400" />
+                    }
+                    label="Department"
+                    value={user.company.department}
+                  />
                 </div>
               </section>
             </div>
@@ -93,7 +134,9 @@ function InfoItem({ icon, label, value }) {
     <div className="flex items-center p-3 bg-gray-50 rounded-lg">
       {icon}
       <div className="ml-3">
-        <p className="text-sm font-medium text-gray-600 py-2">{label} : {value}</p>
+        <p className="text-sm font-medium text-gray-600 py-2">
+          {label} : {value}
+        </p>
       </div>
     </div>
   );
